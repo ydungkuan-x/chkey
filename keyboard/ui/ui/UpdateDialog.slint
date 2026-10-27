@@ -1,0 +1,114 @@
+import { Theme } from "./Theme.slint";
+import { AppButton } from "./components/AppButton.slint";
+import { I18nTexts } from "./models/I18nTexts.slint";
+
+export component UpdateWindow inherits Window {
+    // ========================================
+    // 1. Properties
+    // ========================================
+
+    // Đa ngôn ngữ
+    in property <I18nTexts> i18n;
+
+    // Trạng thái giao diện
+    in-out property <bool> dark-mode: false;
+
+    // Phiên bản
+    in-out property <string> current-version: "";
+
+    // Trạng thái kiểm tra phiên bản
+    in-out property <string> latest-version: "";
+    in-out property <bool> is-checking: false;
+    in-out property <string> status-message: "";
+    in-out property <bool> is-downloading: false;
+    in-out property <bool> download-success: false;
+
+    // ========================================
+    // 2. Property Bindings
+    // ========================================
+
+    changed dark-mode => {
+        Theme.dark-mode = root.dark-mode;
+    }
+
+    // ========================================
+    // 3. Callbacks
+    // ========================================
+
+    callback close-dialog();
+    callback update();
+    callback open-download-dir();
+    callback install-now();
+
+    // ========================================
+    // 4. Window Properties
+    // ========================================
+    title: root.i18n.update-title != "" ? root.i18n.update-title : "Cập nhật phiên bản";
+    icon: @image-url("../../chkey.png");
+    width: 360px;
+    height: 150px;
+    background: Theme.bg;
+    default-font-size: 12px;
+    always-on-top: true;
+
+    VerticalLayout {
+        padding: 10px;
+        spacing: 16px;
+        alignment: space-between;
+
+        // Tiêu đề & Thông tin phiên bản
+        VerticalLayout {
+            spacing: 8px;
+
+            Text {
+                text: root.i18n.update-check-title;
+                font-size: 12px;
+                font-weight: 700;
+                color: Theme.text-primary;
+            }
+
+            Text {
+                text: root.status-message != ""
+                    ? root.status-message
+                    : (root.is-checking
+                    ? root.i18n.update-checking
+                    : (root.latest-version != "" && root.latest-version != root.current-version
+                    ? root.i18n.update-available + root.latest-version + " " + root.i18n.update-current-version + root.current-version + ")"
+                    : root.i18n.update-latest + " (" + root.current-version + ")"));
+                font-size: 12px;
+                color: Theme.text-secondary;
+                wrap: word-wrap;
+            }
+        }
+
+        // Action buttons
+        HorizontalLayout {
+            alignment: end;
+            spacing: 10px;
+
+            if (root.download-success): AppButton {
+                height: 32px;
+                text: root.i18n.install-now;
+                clicked => {
+                    root.install-now();
+                }
+            }
+
+            if (root.latest-version != "" && root.latest-version != root.current-version && !root.download-success): AppButton {
+                text: root.is-downloading ? root.i18n.update-downloading : root.i18n.update-btn;
+                disabled: root.is-downloading;
+                clicked => {
+                    root.update();
+                }
+            }
+
+            AppButton {
+                text: root.i18n.close-window;
+                height: 32px;
+                clicked => {
+                    root.close-dialog();
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,137 @@
+<section class="section" id="guide" style="background: rgba(10, 14, 18, 0.5)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Đơn Giản &amp; Dễ Dàng</span>
+      <h2 class="section-title">3 Bước Để Bắt Đầu Gõ</h2>
+      <p class="section-subtitle">
+        Không cần cấu hình phức tạp, tương thích ngay sau khi cài đặt.
+      </p>
+    </div>
+
+    <!-- OS Selector Tabs -->
+    <div class="guide-tabs-wrap">
+      <div class="guide-tabs" role="tablist">
+        <button
+          type="button"
+          class="guide-tab active"
+          id="tab-guide-win"
+          role="tab"
+          aria-selected="true"
+          onclick="switchGuide('win')"
+        >
+          <span class="guide-tab-icon">
+            <img src="../assets/windows.svg" alt="windows" />
+          </span>
+          <span class="guide-tab-text">Hướng Dẫn Windows</span>
+          <span class="guide-tab-badge">TSF Mode</span>
+        </button>
+        <button
+          type="button"
+          class="guide-tab tab-mac"
+          id="tab-guide-mac"
+          role="tab"
+          aria-selected="false"
+          onclick="switchGuide('mac')"
+        >
+          <span class="guide-tab-icon">
+            <img src="../assets/apple-light.svg" alt="apple" />
+          </span>
+          <span class="guide-tab-text">Hướng Dẫn macOS</span>
+          <span class="guide-tab-badge">Native IME</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Windows Steps -->
+    <div class="guide-steps-container active" id="guide-win-steps">
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Tải Bộ Cài Đặt</h3>
+          <p class="step-desc">
+            Tải file cài đặt chính thức <code>windows-x64.exe</code> (v1.0.0) từ
+            website về máy tính của bạn.
+          </p>
+          <div class="step-code">
+            <span>windows-x64.exe</span>
+            <span style="color: #10b981">~22.6 MB</span>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Chạy File Cài Đặt</h3>
+          <p class="step-desc">
+            Nhấp đúp chuột vào file vừa tải về. Bộ cài đặt sẽ tự động sao chép
+            DLL TSF và đăng ký vào Windows trong 2 giây.
+          </p>
+          <div class="step-code">
+            <span>Tự động kích hoạt TSF</span>
+            <span>⚡ Hoàn tất</span>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Bấm Win + Space &amp; Gõ</h3>
+          <p class="step-desc">
+            Nhấn tổ hợp phím
+            <kbd style="color: #f59e0b">Win + Space</kbd> để chọn
+            <strong>Native (Rade)</strong> và bắt đầu gõ tiếng Tây Nguyên ở bất
+            kỳ đâu!
+          </p>
+          <div class="step-code">
+            <span>Phím tắt: Win + Space</span>
+            <span>✅ RADE Mode</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- macOS Steps -->
+    <div class="guide-steps-container" id="guide-mac-steps">
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number step-mac">1</div>
+          <h3 class="step-title">Tải File Cài Đặt (.dmg)</h3>
+          <p class="step-desc">
+            Tải gói cài đặt chính thức <code>macos-arm64.dmg</code> (Apple
+            Silicon) hoặc <code>macos-x64.dmg</code> (Intel) về máy Mac.
+          </p>
+          <div class="step-code">
+            <span>macos-arm64 / x64.dmg</span>
+            <span style="color: #38bdf8">~18.4 MB</span>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number step-mac">2</div>
+          <h3 class="step-title">Kéo Vào Applications</h3>
+          <p class="step-desc">
+            Mở file .dmg và kéo biểu tượng CHKey vào thư mục Applications. Cấp
+            quyền Trợ năng (Accessibility) trong Cài đặt hệ thống.
+          </p>
+          <div class="step-code">
+            <span>Kéo vào Applications</span>
+            <span style="color: #38bdf8">⚡ Cấp quyền Trợ năng</span>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number step-mac">3</div>
+          <h3 class="step-title">Bấm Control + Space &amp; Gõ</h3>
+          <p class="step-desc">
+            Nhấn tổ hợp phím
+            <kbd style="color: #38bdf8">Control + Space</kbd> (hoặc biểu tượng
+            bộ gõ trên thanh Menu bar) để chọn
+            <strong>CHKey Tây Nguyên</strong> và gõ ngay!
+          </p>
+          <div class="step-code">
+            <span>Phím tắt: Control + Space</span>
+            <span style="color: #10b981">✅ CHKey Tây Nguyên</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

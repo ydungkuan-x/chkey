@@ -1,0 +1,9 @@
+[package]
+name = "chkey_i18n"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chkey_ui = { path = "../ui" }
+fluent = "0.17.0"
+unic-langid = "0.9.6"

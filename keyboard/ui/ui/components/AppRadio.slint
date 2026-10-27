@@ -1,0 +1,61 @@
+import { Theme } from "../Theme.slint";
+
+export component AppRadio inherits Rectangle {
+    in property <bool> checked: false;
+    in property <bool> enabled: true;
+    in property <bool> disable: !root.enabled;
+    in property <string> text: "";
+
+    callback toggled(bool);
+
+    height: 16px;
+    opacity: root.disable ? 0.5 : 1.0;
+
+    Rectangle {
+        x: 0px;
+        y: (root.height - 16px) / 2;
+
+        width: 15px;
+        height: 15px;
+
+        border-width: 1px;
+        border-radius: 7.5px;
+        border-color: root.checked ? Theme.accent : Theme.border;
+
+        background: Theme.surface;
+
+        Rectangle {
+            visible: root.checked;
+            x: (parent.width - 7px) / 2;
+            y: (parent.height - 7px) / 2;
+            width: 7px;
+            height: 7px;
+            border-radius: 3.5px;
+            background: Theme.accent;
+        }
+    }
+
+    Text {
+        x: 22px;
+        y: 0px;
+        height: root.height;
+
+        text: root.text;
+        color: Theme.text-primary;
+
+        vertical-alignment: center;
+        horizontal-alignment: left;
+    }
+
+    TouchArea {
+        width: root.width;
+        height: root.height;
+        mouse-cursor: root.disable ? default : pointer;
+
+        clicked => {
+            if (!root.disable && !root.checked) {
+                root.toggled(true);
+            }
+        }
+    }
+}

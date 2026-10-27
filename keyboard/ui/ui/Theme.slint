@@ -1,0 +1,14 @@
+export global Theme {
+    in-out property <bool> dark-mode: false;
+
+    in-out property <color> bg: dark-mode ? #1E1E1E : #F5F5F5;
+    in-out property <color> surface: dark-mode ? #2B2B2B : #FFFFFF;
+    in-out property <color> border: dark-mode ? #3E3E42 : #e0dfdf;
+
+    in-out property <color> text-primary: dark-mode ? #E4E4E7 : #1F1F1F;
+    in-out property <color> text-secondary: dark-mode ? #A1A1AA : #666666;
+
+    in-out property <color> accent: dark-mode ? #0078D4 : #0067C0;
+
+    in-out property <color> surface-hover: dark-mode ? #383838 : #dfdfdf;
+}

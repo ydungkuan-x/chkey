@@ -1,0 +1,95 @@
+/* ==========================================================================
+       FOOTER
+       ========================================================================== */
+      .footer {
+        border-top: 1px solid var(--border-subtle);
+        background: #05080a;
+        padding: 60px 0 30px;
+        margin-top: 80px;
+      }
+
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .footer-desc {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        max-width: 340px;
+        line-height: 1.7;
+      }
+
+      .footer-col-title {
+        font-size: 0.94rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #cbd5e1;
+        margin-bottom: 16px;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-links a, .footer-links span {
+        font-size: 0.9rem;
+        color: var(--text-dim);
+        transition: var(--transition-smooth);
+      }
+
+      .footer-links a:hover {
+        color: var(--color-primary);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+
+      /* Toast Notification */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #1e293b;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: var(--radius-sm);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--color-primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: var(--transition-smooth);
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }

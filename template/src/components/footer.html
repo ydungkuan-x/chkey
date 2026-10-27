@@ -1,0 +1,129 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-logo-wrap" style="width: 38px; height: 38px">
+            <img
+              src="assets/chkey.png"
+              expr:alt='data:blog.title ? data:blog.title : "Logo CHKey"'
+            />
+          </div>
+          <div class="brand-info">
+            <span class="brand-title" style="font-size: 1.25rem">
+              <b:eval expr='data:blog.title ? data:blog.title : "CHKey"' />
+            </span>
+            <span class="brand-sub">
+              <b:eval
+                expr='data:blog.description ? data:blog.description : "Central Highlands Keyboard"'
+              />
+            </span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          <b:eval
+            expr='data:blog.description ? data:blog.description : "Dự án bàn phím số mã nguồn mở phục vụ đồng bào và các cộng đồng dân tộc Tây Nguyên (Êđê, Gia Rai, Ba Na, M&apos;nông, Cơ Ho...)."'
+          />
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Ngôn Ngữ</h4>
+        <ul class="footer-links">
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#simulator"'>
+              Tiếng Êđê (Rade)
+            </a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#simulator"'>
+              Tiếng Gia Rai (Jrai)
+            </a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#simulator"'>
+              Tiếng Ba Na (Bahnar)
+            </a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#simulator"'>Tiếng M'nông</a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#simulator"'>
+              Tiếng Cơ Ho (K'Ho)
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Tài Nguyên</h4>
+        <ul class="footer-links">
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#download"'>
+              Tải xuống Windows
+            </a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#download"'>
+              Tải xuống macOS
+            </a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#cheatsheet"'>
+              Bảng quy tắc gõ
+            </a>
+          </li>
+          <li>
+            <a expr:href='data:blog.homepageUrl + "#guide"'>
+              Hướng dẫn sử dụng
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Mã Nguồn &amp; Liên Hệ</h4>
+        <ul class="footer-links">
+          <li>
+            <a expr:href="data:blog.homepageUrl" target="_blank" rel="noopener">
+              Trang chủ <data:blog.title />
+            </a>
+          </li>
+          <li>
+            <a
+              expr:href='data:blog.homepageUrl + "#cheatsheet"'
+              target="_blank"
+              rel="noopener"
+            >
+              Hướng dẫn chi tiết
+            </a>
+          </li>
+          <li>
+            <span>
+              Email:
+              <a href="mailto:contact@chkey.org">contact@chkey.org</a>
+            </span>
+          </li>
+          <li>
+            <a expr:href="data:blog.homepageUrl">Giấy phép mã nguồn mở MIT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        © <data:blog.title />. Phát triển vì sự phát triển và bảo tồn ngôn ngữ
+        các dân tộc Tây Nguyên.
+      </div>
+      <div style="display: flex; gap: 16px">
+        <span>Windows</span>
+        <span>•</span>
+        <span>macOS</span>
+        <span>•</span>
+        <span>Open Source</span>
+      </div>
+    </div>
+  </div>
+</footer>

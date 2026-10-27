@@ -1,0 +1,66 @@
+<header class="header">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a expr:href="data:blog.homepageUrl" class="brand" id="brand-link">
+        <div class="brand-logo-wrap">
+          <img
+            src="assets/chkey.png"
+            expr:alt='data:blog.title ? data:blog.title : "Logo CHKey"'
+          />
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">
+            <b:eval expr='data:blog.title ? data:blog.title : "CHKey"' />
+          </span>
+          <span class="brand-sub">
+            <b:eval
+              expr='data:blog.description ? data:blog.description : "Central Highlands Keyboard"'
+            />
+          </span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a expr:href='data:blog.homepageUrl + "#simulator"'>
+            Gõ Thử Trực Tiếp
+          </a>
+        </li>
+        <li class="nav-item">
+          <a expr:href='data:blog.homepageUrl + "#cheatsheet"'>Bảng Gõ</a>
+        </li>
+        <li class="nav-item">
+          <a expr:href='data:blog.homepageUrl + "#features"'>Tính Năng</a>
+        </li>
+        <li class="nav-item">
+          <a expr:href='data:blog.homepageUrl + "#guide"'>Hướng Dẫn</a>
+        </li>
+      </ul>
+
+      <div class="header-actions">
+        <a
+          expr:href='data:blog.homepageUrl + "#download"'
+          class="btn-nav-download"
+          id="header-download-btn"
+          title="Tải xuống (Win / Mac)"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span class="btn-nav-text">Tải xuống (Win / Mac)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

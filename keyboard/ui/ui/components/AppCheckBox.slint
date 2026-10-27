@@ -1,0 +1,63 @@
+import { Theme } from "../Theme.slint";
+
+export component AppCheckBox inherits Rectangle {
+    in-out property <bool> checked: false;
+    in property <string> text: "";
+    in property <bool> enabled: true;
+
+    callback toggled(bool);
+
+    height: 16px;
+    opacity: root.enabled ? 1.0 : 0.45;
+
+    Rectangle {
+        x: 0px;
+        y: (root.height - 16px) / 2;
+
+        width: 15px;
+        height: 15px;
+
+        border-width: 1px;
+        border-radius: 3px;
+        border-color: Theme.border;
+
+        background: root.checked
+            ? Theme.accent
+            : Theme.surface;
+
+        Image {
+            visible: root.checked;
+            source: @image-url("../../assets/icons/checkmark.svg");
+
+            width: 7px;
+            height: 7px;
+
+            horizontal-alignment: center;
+            vertical-alignment: center;
+        }
+    }
+
+    Text {
+        x: 20px;
+        y: 0px;
+        height: root.height;
+
+        text: root.text;
+        color: root.enabled ? Theme.text-primary : Theme.text-secondary;
+
+        vertical-alignment: center;
+        horizontal-alignment: left;
+    }
+
+    TouchArea {
+        enabled: root.enabled;
+        width: root.width;
+        height: root.height;
+        mouse-cursor: root.enabled ? pointer : default;
+
+        clicked => {
+            root.checked = !root.checked;
+            root.toggled(root.checked);
+        }
+    }
+}

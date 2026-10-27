@@ -1,0 +1,82 @@
+/* ==========================================================================
+       TELEX CHEATSHEET SECTION
+       ========================================================================== */
+      .cheatsheet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .rule-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        padding: 24px;
+        transition: var(--transition-smooth);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .rule-card:hover {
+        border-color: rgba(245, 158, 11, 0.35);
+        background: var(--bg-card-hover);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .rule-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .rule-icon {
+        font-size: 1.4rem;
+      }
+
+      .rule-card-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+
+      .rule-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.94rem;
+      }
+
+      .rule-table tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .rule-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .rule-table td {
+        padding: 10px 6px;
+      }
+
+      .rule-result {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--color-primary-light);
+      }
+
+      .rule-key {
+        font-family: var(--font-mono);
+        color: #38bdf8;
+        background: rgba(56, 189, 248, 0.08);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+
+      .rule-example {
+        color: var(--text-dim);
+        font-style: italic;
+        text-align: right;
+      }

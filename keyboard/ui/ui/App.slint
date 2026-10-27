@@ -1,0 +1,150 @@
+import { AppCheckBox } from "./components/AppCheckBox.slint";
+import { AppGroupBox } from "./components/AppGroupBox.slint";
+import { I18nTexts } from "./models/I18nTexts.slint";
+import { IconLabel } from "./components/IconLabel.slint";
+import { AppButton } from "./components/AppButton.slint";
+import { AppRadio } from "./components/AppRadio.slint";
+import { AppConfig } from "./models/AppConfig.slint";
+
+struct SettingItem {
+    label: string,
+    key: string,
+    checked: bool,
+    enabled: bool,
+}
+
+struct ActionItem {
+    label: string,
+    action: string,
+    icon: image,
+}
+
+export component App inherits Rectangle {
+    in property <I18nTexts> i18n;
+    in property <AppConfig> app-config;
+
+    callback action-clicked(string);
+    callback input-settings-changed(string, string);
+    callback setting-changed(string, bool);
+
+    property <[SettingItem]> settings-items: [
+        {
+            label: i18n.auto-update,
+            key: "check-for-updates",
+            checked: root.app-config.auto-update,
+            enabled: true,
+        },
+        {
+            label: i18n.run-on-startup,
+            key: "run-on-startup",
+            checked: root.app-config.launch-at-startup,
+            enabled: true,
+        },
+        {
+            label: i18n.show-dialog-on-startup,
+            key: "show-on-startup",
+            checked: root.app-config.show-dialog-on-startup,
+            enabled: root.app-config.launch-at-startup,
+        },
+    ];
+
+    property <[ActionItem]> action-items: [
+        {
+            label: i18n.close-window,
+            action: "close",
+            icon: @image-url("../assets/icons/exit.svg"),
+        },
+        {
+            label: i18n.quit-app,
+            action: "exit",
+            icon: @image-url("../assets/icons/power-off.svg"),
+        },
+        {
+            label: i18n.check-for-updates,
+            action: "update",
+            icon: @image-url("../assets/icons/update.svg"),
+        },
+        {
+            label: i18n.restore-defaults,
+            action: "default",
+            icon: @image-url("../assets/icons/return.svg"),
+        },
+    ];
+
+    HorizontalLayout {
+        padding-top: 7px;
+        alignment: space-between;
+        width: root.width;
+        property <length> right-width: 104px;
+        property <length> padding-item: 12px;
+
+        VerticalLayout {
+            width: parent.width - right-width - padding-item;
+            spacing: 18px;
+
+            AppGroupBox {
+                title: i18n.dashboard;
+                height: 148px;
+
+                HorizontalLayout {
+                    width: 100%;
+                    alignment: space-between;
+
+                    IconLabel {
+                        icon: @image-url("../assets/icons/language-input.svg");
+                        label: i18n.typing-mode;
+                    }
+
+                    HorizontalLayout {
+                        spacing: 10px;
+                        width: 160px;
+                        alignment: start;
+
+                        AppRadio {
+                            text: "EDE";
+                            width: 48%;
+                            checked: root.app-config.input-mode == "EDE";
+                            toggled => {
+                                input-settings-changed("input_mode", "EDE");
+                            }
+                        }
+
+                        AppRadio {
+                            text: "ENG";
+                            width: 48%;
+                            checked: root.app-config.input-mode == "ENG";
+                            toggled => {
+                                input-settings-changed("input_mode", "ENG");
+                            }
+                        }
+                    }
+                }
+
+                for item in root.settings-items: AppCheckBox {
+                    text: item.label;
+                    checked: item.checked;
+                    enabled: item.enabled;
+
+                    toggled => {
+                        root.setting-changed(item.key, self.checked);
+                    }
+                }
+            }
+        }
+
+        VerticalLayout {
+            width: right-width;
+            spacing: 4px;
+
+            for item[index] in root.action-items: AppButton {
+                icon: item.icon;
+                has-icon: true;
+                text: item.label;
+                button-alignment: start;
+                width: 100%;
+                height: 34px;
+                clicked => { root.action-clicked(item.action); }
+            }
+        }
+    }
+}

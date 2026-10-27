@@ -1,0 +1,10 @@
+[env]
+VCToolsVersion = "14.29.30037"
+
+[alias]
+build-x64 = "build -p chkey_windows --target x86_64-pc-windows-msvc"
+build-arm64 = "build -p chkey_windows --target aarch64-pc-windows-msvc"
+build-x64-release = "build -p chkey_windows --target x86_64-pc-windows-msvc --release"
+build-arm64-release = "build -p chkey_windows --target aarch64-pc-windows-msvc --release"
+check-x64 = "check -p chkey_windows --target x86_64-pc-windows-msvc"
+check-arm64 = "check -p chkey_windows --target aarch64-pc-windows-msvc"

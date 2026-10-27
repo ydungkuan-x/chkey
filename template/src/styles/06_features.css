@@ -1,0 +1,48 @@
+/* ==========================================================================
+       FEATURES GRID
+       ========================================================================== */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 28px;
+      }
+
+      .feature-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(245, 158, 11, 0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      }
+
+      .feature-icon-wrapper {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-md);
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        margin-bottom: 20px;
+      }
+
+      .feature-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+      }
+
+      .feature-text {
+        color: var(--text-muted);
+        font-size: 0.96rem;
+        line-height: 1.65;
+      }

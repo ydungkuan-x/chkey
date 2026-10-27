@@ -1,0 +1,174 @@
+/* ==========================================================================
+       INSTALLATION 3-STEP GUIDE
+       ========================================================================== */
+      .guide-tabs-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 36px;
+      }
+
+      .guide-tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(18, 24, 28, 0.85);
+        padding: 6px;
+        border-radius: var(--radius-full);
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(12px);
+      }
+
+      .guide-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 22px;
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid transparent;
+        border-radius: var(--radius-full);
+        font-family: var(--font-sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+      }
+
+      .guide-tab:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .guide-tab.active {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 88, 12, 0.25));
+        color: #fff;
+        border-color: rgba(245, 158, 11, 0.5);
+        box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
+      }
+
+      .guide-tab.tab-mac.active {
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 165, 233, 0.25));
+        color: #fff;
+        border-color: rgba(56, 189, 248, 0.5);
+        box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+      }
+
+      .guide-tab-icon {
+        font-size: 1.15rem;
+        line-height: 1;
+      }
+
+      .guide-tab-icon img {
+        width: 24px;
+        height: auto;
+      }
+
+      .guide-tab-badge {
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text-dim);
+        font-weight: 500;
+        transition: var(--transition-smooth);
+      }
+
+      .guide-tab.active .guide-tab-badge {
+        background: rgba(245, 158, 11, 0.3);
+        color: #fbbf24;
+      }
+
+      .guide-tab.tab-mac.active .guide-tab-badge {
+        background: rgba(56, 189, 248, 0.3);
+        color: #38bdf8;
+      }
+
+      .guide-steps-container {
+        display: none;
+      }
+
+      .guide-steps-container.active {
+        display: block;
+        animation: fadeInSteps 0.35s ease;
+      }
+
+      @keyframes fadeInSteps {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        position: relative;
+      }
+
+      .step-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: relative;
+        transition: var(--transition-smooth);
+      }
+
+      .step-card:hover {
+        border-color: var(--border-accent);
+        transform: translateY(-2px);
+      }
+
+      .step-number {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f59e0b, #ea580c);
+        color: #000;
+        font-weight: 800;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+      }
+
+      .step-number.step-mac {
+        background: linear-gradient(135deg, #38bdf8, #0284c7);
+        box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+        color: #000;
+      }
+
+      .step-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .step-desc {
+        font-size: 0.94rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .step-code {
+        background: rgba(8, 12, 14, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-sm);
+        padding: 10px 14px;
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        color: #38bdf8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: auto;
+      }

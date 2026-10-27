@@ -1,0 +1,73 @@
+import { Theme } from "../Theme.slint";
+
+export component AppButton inherits Rectangle {
+    in property <string> text: "";
+    in property <image> icon;
+    in property <bool> has-icon: false;
+    in property <bool> disabled: false;
+    in property <LayoutAlignment> button-alignment: center;
+
+    callback clicked();
+
+    width: 100px;
+    height: 32px;
+
+    border-radius: 4px;
+    border-width: 1px;
+
+    background: root.disabled
+        ? Theme.surface
+        : touch.pressed
+        ? Theme.accent
+        : touch.has-hover
+        ? Theme.surface-hover
+        : Theme.surface;
+
+    border-color: root.disabled
+        ? Theme.border
+        : touch.has-hover
+        ? Theme.accent
+        : Theme.border;
+
+    opacity: root.disabled ? 0.5 : 1.0;
+
+    animate background { duration: 150ms; }
+    animate border-color { duration: 150ms; }
+    animate opacity { duration: 150ms; }
+
+    HorizontalLayout {
+        alignment: button-alignment;
+        spacing: 8px;
+        padding-left: 12px;
+        padding-right: 12px;
+
+        if root.has-icon: VerticalLayout {
+            alignment: center;
+            height: 100%;
+
+            Image {
+                source: root.icon;
+                width: 16px;
+                height: 16px;
+                image-fit: contain;
+                vertical-alignment: center;
+            }
+        }
+
+        Text {
+            text: root.text;
+            color: touch.pressed ? #FFFFFF : Theme.text-primary;
+            horizontal-alignment: center;
+            vertical-alignment: center;
+        }
+    }
+
+    touch := TouchArea {
+        enabled: !root.disabled;
+        mouse-cursor: root.disabled ? default : pointer;
+
+        clicked => {
+            root.clicked();
+        }
+    }
+}

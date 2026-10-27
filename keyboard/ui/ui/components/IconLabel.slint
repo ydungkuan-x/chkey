@@ -1,0 +1,23 @@
+import { Theme } from "../Theme.slint";
+
+export component IconLabel inherits Rectangle {
+    in property <image> icon;
+    in property <string> label;
+    in property <length> icon-size: 15px;
+
+    HorizontalLayout {
+        spacing: 4px;
+
+        Image {
+            source: root.icon;
+            width: icon-size;
+            height: icon-size;
+        }
+
+        Text {
+            text: root.label;
+            horizontal-alignment: start;
+            color: Theme.text-primary;
+        }
+    }
+}

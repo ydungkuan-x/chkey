@@ -1,0 +1,241 @@
+<section class="section" id="simulator">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-badge">Trải Nghiệm Tức Thì</span>
+            <h2 class="section-title">
+              Gõ Thử Tiếng Êđê &amp; Tây Nguyên Trực Tiếp
+            </h2>
+            <p class="section-subtitle">
+              Khung soạn thảo dưới đây được tích hợp lõi xử lý CHKey.
+              Hãy thử gõ các phím tắt quen thuộc để cảm nhận tốc độ biến đổi ký
+              tự tự nhiên!
+            </p>
+          </div>
+
+          <div class="simulator-container">
+            <div class="sim-toolbar">
+              <div class="sim-status">
+                <span class="sim-status-indicator">
+                  <span>●</span> Bộ gõ CHKey Web: Đang BẬT
+                </span>
+              </div>
+
+              <div class="sim-quick-samples">
+                <span class="sim-quick-label">Gõ thử từ mẫu:</span>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('Klei Aê Diê')"
+                >
+                  Klei Aê Diê
+                </button>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('ƀuôn')"
+                >
+                  ƀuôn
+                </button>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('čih klei')"
+                >
+                  čih klei
+                </button>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('ñu')"
+                >
+                  ñu
+                </button>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('kơ̆')"
+                >
+                  kơ̆
+                </button>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('măt dĕ')"
+                >
+                  măt dĕ
+                </button>
+                <button
+                  type="button"
+                  class="btn-sample"
+                  onclick="insertSample('hdră')"
+                >
+                  hdră
+                </button>
+                <button type="button" class="btn-sample" onclick="clearSim()">
+                  Xóa hết
+                </button>
+              </div>
+            </div>
+
+            <div class="sim-editor-wrap">
+              <textarea
+                id="sim-input"
+                class="sim-textarea"
+                placeholder="Gõ thử ngay tại đây... (Ví dụ gõ 'bb' sẽ thành 'ƀ', 'cx' thành 'č', 'nn' thành 'ñ', 'ex' thành 'ĕ', 'owx' thành 'ơ̆')..."
+                rows="4"
+              ></textarea>
+            </div>
+
+            <div class="sim-hint">
+              <span
+                >💡 <strong>Mẹo:</strong> Gõ <kbd>bb</kbd> =
+                <strong>ƀ</strong> | <kbd>cx</kbd> = <strong>č</strong> |
+                <kbd>nn</kbd> = <strong>ñ</strong> | <kbd>ex</kbd> =
+                <strong>ĕ</strong> | <kbd>ox</kbd> = <strong>ŏ</strong> |
+                <kbd>aax</kbd> = <strong>â̆</strong></span
+              >
+              <span id="char-count">0 ký tự</span>
+            </div>
+
+            <!-- Quick Virtual Palette -->
+            <div class="char-palette">
+              <div class="char-palette-title">
+                <span
+                  >Bảng bấm chèn nhanh ký tự đặc biệt Tây Nguyên (Nhấp vào ký tự
+                  để chèn):</span
+                >
+              </div>
+              <div class="char-keys-grid">
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ƀ')"
+                >
+                  <span class="char-main">ƀ</span
+                  ><span class="char-sub">bb</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('Ƀ')"
+                >
+                  <span class="char-main">Ƀ</span
+                  ><span class="char-sub">BB</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('č')"
+                >
+                  <span class="char-main">č</span
+                  ><span class="char-sub">cx</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('Č')"
+                >
+                  <span class="char-main">Č</span
+                  ><span class="char-sub">CX</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ñ')"
+                >
+                  <span class="char-main">ñ</span
+                  ><span class="char-sub">nn</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('Ñ')"
+                >
+                  <span class="char-main">Ñ</span
+                  ><span class="char-sub">NN</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('đ')"
+                >
+                  <span class="char-main">đ</span
+                  ><span class="char-sub">dd</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ĕ')"
+                >
+                  <span class="char-main">ĕ</span
+                  ><span class="char-sub">ex</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ê̆')"
+                >
+                  <span class="char-main">ê̆</span
+                  ><span class="char-sub">eex</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ĭ')"
+                >
+                  <span class="char-main">ĭ</span
+                  ><span class="char-sub">ix</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ŏ')"
+                >
+                  <span class="char-main">ŏ</span
+                  ><span class="char-sub">ox</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ô̆')"
+                >
+                  <span class="char-main">ô̆</span
+                  ><span class="char-sub">oox</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ơ̆')"
+                >
+                  <span class="char-main">ơ̆</span
+                  ><span class="char-sub">owx</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ŭ')"
+                >
+                  <span class="char-main">ŭ</span
+                  ><span class="char-sub">ux</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('ư̆')"
+                >
+                  <span class="char-main">ư̆</span
+                  ><span class="char-sub">uwx</span>
+                </button>
+                <button
+                  type="button"
+                  class="char-key-btn"
+                  onclick="insertChar('â̆')"
+                >
+                  <span class="char-main">â̆</span
+                  ><span class="char-sub">aax</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

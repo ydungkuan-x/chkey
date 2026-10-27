@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsversion='3' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta charset='UTF-8'/>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+
+    <!-- Tiêu đề trang kế thừa theo từng chế độ xem của Blogger -->
+    <b:if cond='data:view.isHomepage'>
+      <title><data:blog.title/></title>
+    <b:elseif cond='data:view.isSingleItem'/>
+      <title><data:blog.pageName/> | <data:blog.title/></title>
+    <b:elseif cond='data:view.isLabelSearch'/>
+      <title>Chủ đề: <data:view.search.label/> | <data:blog.title/></title>
+    <b:elseif cond='data:view.isSearch'/>
+      <title>Tìm kiếm: <data:view.search.query/> | <data:blog.title/></title>
+    <b:elseif cond='data:view.isArchive'/>
+      <title>Lưu trữ: <data:view.archive.range.label/> | <data:blog.title/></title>
+    <b:elseif cond='data:view.isError'/>
+      <title>404 - Không tìm thấy trang | <data:blog.title/></title>
+    <b:else/>
+      <title><data:view.title.escaped/></title>
+    </b:if>
+
+    <!-- Canonical URL kế thừa trực tiếp từ Blogger -->
+    <link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+
+    <!-- Thẻ mặc định của Blogger -->
+    <b:include data='blog' name='all-head-content'/>
+
+    <!-- Feeds RSS/Atom kế thừa trực tiếp từ Blogger -->
+    <link expr:href='data:blog.homepageUrl path "feeds/posts/default"' rel='alternate' title='Bài viết (Atom)' type='application/atom+xml'/>
+    <link expr:href='data:blog.homepageUrl path "feeds/posts/default?alt=rss"' rel='alternate' title='Bài viết (RSS)' type='application/rss+xml'/>
+
+    <!-- Thẻ Meta Description kế thừa từ mô tả bài viết hoặc mô tả blog trong Blogger -->
+    <b:if cond='data:view.description'>
+      <meta expr:content='data:view.description' name='description'/>
+    <b:elseif cond='data:blog.metaDescription'/>
+      <meta expr:content='data:blog.metaDescription' name='description'/>
+    <b:elseif cond='data:blog.description'/>
+      <meta expr:content='data:blog.description' name='description'/>
+    <b:else/>
+      <meta content="CHKey là bộ gõ tiếng các dân tộc Tây Nguyên (Êđê, Gia Rai, Ba Na, M'nông, Cơ Ho...) hỗ trợ nền tảng Windows và macOS. Gõ mượt mà, triệt tiêu giật nháy màn hình, 100% an toàn và mã nguồn mở." name='description'/>
+    </b:if>
+
+    <!-- Tác giả kế thừa tên Blog từ Blogger -->
+    <meta expr:content='data:blog.title' name='author'/>
+    <meta content="CHKey, bộ gõ tiếng Êđê, bàn phím tiếng Ê đê, bộ gõ Tây Nguyên, bàn phím Gia Rai, Ba Na, M'nông, TSF Windows, Rade keyboard, Klei Êđê" name='keywords'/>
+
+    <!-- Open Graph / Chia sẻ mạng xã hội kế thừa động từ Blogger -->
+    <meta expr:content='data:view.title.escaped ? data:view.title.escaped : data:blog.pageTitle' property='og:title'/>
+    <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+    <meta expr:content='data:blog.title' property='og:site_name'/>
+    <meta expr:content='data:view.isSingleItem ? "article" : "website"' property='og:type'/>
+    <b:if cond='data:view.description'>
+      <meta expr:content='data:view.description' property='og:description'/>
+    <b:elseif cond='data:blog.metaDescription'/>
+      <meta expr:content='data:blog.metaDescription' property='og:description'/>
+    <b:elseif cond='data:blog.description'/>
+      <meta expr:content='data:blog.description' property='og:description'/>
+    </b:if>
+
+    <!-- Ảnh đại diện Open Graph: Kế thừa ảnh bài viết, nếu không có mới dùng ảnh mặc định -->
+    <b:if cond='data:view.featuredImage'>
+      <meta expr:content='data:view.featuredImage' property='og:image'/>
+    <b:elseif cond='data:blog.postImageUrl'/>
+      <meta expr:content='data:blog.postImageUrl' property='og:image'/>
+    <b:else/>
+      <meta content='https://chkey.org/assets/hero_bg.jpg' property='og:image'/>
+    </b:if>
+
+    <!-- Twitter Card kế thừa động -->
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta expr:content='data:blog.pageTitle' name='twitter:title'/>
+    <meta expr:content='data:blog.canonicalUrl' name='twitter:url'/>
+    <b:if cond='data:view.description'>
+      <meta expr:content='data:view.description' name='twitter:description'/>
+    <b:elseif cond='data:blog.metaDescription'/>
+      <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+    <b:elseif cond='data:blog.description'/>
+      <meta expr:content='data:blog.description' name='twitter:description'/>
+    </b:if>
+    <b:if cond='data:view.featuredImage'>
+      <meta expr:content='data:view.featuredImage' name='twitter:image'/>
+    <b:elseif cond='data:blog.postImageUrl'/>
+      <meta expr:content='data:blog.postImageUrl' name='twitter:image'/>
+    </b:if>
+
+    <!-- Favicon: Kế thừa tự động từ cài đặt Blogger (Settings -> Favicon) -->
+    <b:if cond='data:blog.blogspotFaviconUrl'>
+      <link expr:href='data:blog.blogspotFaviconUrl' rel='icon' type='image/x-icon'/>
+    <b:else/>
+      <link href='assets/chkey.png' rel='icon' type='image/png'/>
+    </b:if>
+
+    <!-- Google Fonts: Plus Jakarta Sans, Outfit, JetBrains Mono -->
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link crossorigin='crossorigin' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap' rel='stylesheet'/>
+
+    <!-- Blogger Skin Requirement -->
+    <b:skin><![CDATA[
+/*------------------------------------------------------------------
+Theme Name:    CHKey - Central Highlands Keyboard (Blogger Theme)
+Theme URI:     https://chkey.org
+Author:        CHKey Open Source Community
+Version:       1.0.0
+Description:   Giao diện Blogger chuẩn hiện đại dành cho bộ gõ CHKey
+License:       MIT License
+------------------------------------------------------------------*/
+]]></b:skin>
+
+    <style>
+/*<![CDATA[*/
+{{STYLES}}
+/*]]>*/
+    </style>
+  </head>
+  <body expr:class='data:view.isHomepage ? "is-home" : (data:view.isSingleItem ? "is-post" : "is-page")'>
+    <!-- Section ẩn chứa widget Header mặc định của Blogger để tránh Blogger tự động đẩy vào main -->
+    <div style='display: none;'>
+      <b:section id='header-widgets' name='Header System' showaddelement='no'>
+        <b:widget id='Header1' locked='true' title='Tiêu đề Blog' type='Header' version='2'>
+          <b:includable id='main'/>
+        </b:widget>
+      </b:section>
+    </div>
+
+    {{HEADER}}
+
+    <main>
+      <!-- LANDING PAGE CONTENT (Hiển thị trên Trang Chủ) -->
+      <b:if cond='data:view.isHomepage'>
+      {{HERO}}
+
+      <!-- ======================================================================== -->
+      <!--         INTERACTIVE LIVE TYPING SIMULATOR -->
+      <!-- ======================================================================== -->
+      {{SIMULATOR}}
+
+      <!-- ======================================================================== -->
+      <!--         TELEX CHEATSHEET -->
+      <!-- ======================================================================== -->
+      {{CHEATSHEET}}
+
+      <!-- ======================================================================== -->
+      <!--         KEY ADVANTAGES (WHY CHKEY) -->
+      <!-- ======================================================================== -->
+      {{FEATURES}}
+
+      <!-- ======================================================================== -->
+      <!--         INSTALLATION STEPS -->
+      <!-- ======================================================================== -->
+      {{GUIDE}}
+    
+      <!-- ======================================================================== -->
+      <!--         DOWNLOAD HUB SECTION -->
+      <!-- ======================================================================== -->
+      {{DOWNLOAD}}
+
+      </b:if>
+
+      <!-- BLOG POSTS / ARTICLES SECTION (Khu vực Bài Viết & Tin Tức Blogger) -->
+      {{BLOG}}
+    </main>
+
+    <!-- ================================= FOOTER ======================================= -->
+    {{FOOTER}}
+
+    {{TOAST}}
+
+    <!-- ========================================================================
+       JAVASCRIPT: SIMULATOR & INTERACTION LOGIC
+       ======================================================================== -->
+    <script>
+//<![CDATA[
+{{SCRIPTS}}
+//]]>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<b:section id='main' name='Nội Dung Blog &amp; Bài Viết' showaddelement='no'>
+  <b:widget id='Blog1' locked='true' title='Bài Viết' type='Blog' version='2'>
+    <b:includable id='main' var='top'>
+      <!-- 1. NẾU LÀ TRANG CHỦ (HOMEPAGE) -->
+      <b:if cond='data:view.isHomepage'>
+        <!-- Trên Trang Chủ: Chỉ hiển thị khối tin tức ở chân trang KHI VÀ CHỈ KHI có bài viết -->
+        <b:if cond='data:posts.notEmpty'>
+          <section class='section blog-section' id='blog'>
+            <div class='container'>
+              <b:include name='blogFeed'/>
+            </div>
+          </section>
+        </b:if>
+
+      <!-- 2. NẾU LÀ TRANG CON (BÀI VIẾT, TRANG TĨNH, TÌM KIẾM, 404...) -->
+      <b:else/>
+        <section class='section blog-section' id='blog'>
+          <div class='container'>
+            <!-- 2.1 TRANG LỖI 404 -->
+            <b:if cond='data:view.isError'>
+              <b:include name='errorPage'/>
+
+            <!-- 2.2 TRANG TĨNH (STATIC PAGE: /p/gioi-thieu.html...) -->
+            <b:elseif cond='data:view.isPage'/>
+              <b:loop values='data:posts' var='post'>
+                <b:include data='post' name='staticPage'/>
+              </b:loop>
+
+            <!-- 2.3 TRANG BÀI VIẾT BLOG (POST: /2026/10/bai-viet.html) -->
+            <b:elseif cond='data:view.isPost'/>
+              <b:loop values='data:posts' var='post'>
+                <b:include data='post' name='postItem'/>
+              </b:loop>
+
+            <!-- 2.4 TRANG CHỦ ĐỀ / TÌM KIẾM / LƯU TRỮ (MULTIPLE ITEMS) -->
+            <b:else/>
+              <b:include name='blogFeed'/>
+            </b:if>
+          </div>
+        </section>
+      </b:if>
+    </b:includable>
+
+    <!-- ========================================================================
+         INCLUDABLE: TRANG TĨNH RIÊNG BIỆT (STATIC PAGE: /p/gioi-thieu.html...)
+         ======================================================================== -->
+    <b:includable id='staticPage' var='post'>
+      <article class='single-post-wrapper static-page-wrapper'>
+        <div class='post-header page-header'>
+          <a class='back-home-link' expr:href='data:blog.homepageUrl'>
+            <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.2' viewBox='0 0 24 24' width='16'>
+              <line x1='19' x2='5' y1='12' y2='12'/>
+              <polyline points='12 19 5 12 12 5'/>
+            </svg>
+            Quay lại Trang Chủ
+          </a>
+          <div style='margin-bottom: 8px;'>
+            <span class='section-badge' style='font-size: 0.78rem;'>Trang Thông Tin</span>
+          </div>
+          <h1 class='single-post-title page-title'><data:post.title/></h1>
+        </div>
+        <div class='single-post-body page-body'>
+          <data:post.body/>
+        </div>
+        <!-- Chỉ hiển thị bình luận trang tĩnh nếu bật cho phép bình luận trên trang đó -->
+        <b:if cond='data:post.allowComments'>
+          <div class='comments-area' id='comments' style='margin-top: 48px;'>
+            <h4>Ý kiến đóng góp</h4>
+            <b:include data='post' name='comments'/>
+          </div>
+        </b:if>
+      </article>
+    </b:includable>
+
+    <!-- ========================================================================
+         INCLUDABLE: TRANG BÀI VIẾT BLOG RIÊNG BIỆT (POST: /2026/10/bai-viet.html)
+         ======================================================================== -->
+    <b:includable id='postItem' var='post'>
+      <article class='single-post-wrapper post-detail-wrapper'>
+        <div class='post-header'>
+          <a class='back-home-link' expr:href='data:blog.homepageUrl'>
+            <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.2' viewBox='0 0 24 24' width='16'>
+              <line x1='19' x2='5' y1='12' y2='12'/>
+              <polyline points='12 19 5 12 12 5'/>
+            </svg>
+            Quay lại Trang Chủ
+          </a>
+          <div style='margin-bottom: 8px;'>
+            <span class='section-badge' style='font-size: 0.78rem;'>Bản Tin &amp; Bài Viết</span>
+          </div>
+          <h1 class='single-post-title'><data:post.title/></h1>
+          <div class='post-meta'>
+            <span class='post-date'><data:post.date/></span>
+            <b:if cond='data:post.author'>
+              <span>•</span>
+              <span class='post-author'><data:post.author.name/></span>
+            </b:if>
+            <b:if cond='data:post.labels'>
+              <span>•</span>
+              <span class='post-labels'>
+                <b:loop values='data:post.labels' var='label'>
+                  <a class='post-label-tag' expr:href='data:label.url'><data:label.name/></a>
+                </b:loop>
+              </span>
+            </b:if>
+          </div>
+        </div>
+        <div class='single-post-body'>
+          <data:post.body/>
+        </div>
+        <b:if cond='data:post.allowComments'>
+          <div class='comments-area' id='comments'>
+            <h4>Bình luận (<data:post.numberOfComments/>)</h4>
+            <b:include data='post' name='comments'/>
+          </div>
+        </b:if>
+      </article>
+    </b:includable>
+
+    <!-- ========================================================================
+         INCLUDABLE: DANH SÁCH BÀI VIẾT (FEED: Trang chủ / Tìm kiếm / Nhãn / Lưu trữ)
+         ======================================================================== -->
+    <b:includable id='blogFeed'>
+      <div class='section-header'>
+        <b:if cond='data:view.isLabelSearch'>
+          <span class='section-badge'>Chủ đề</span>
+          <h2 class='section-title'><data:view.search.label/></h2>
+          <p class='section-subtitle'>Các bài viết và tài liệu thuộc nhãn &quot;<data:view.search.label/>&quot;.</p>
+        <b:elseif cond='data:view.isSearch'/>
+          <span class='section-badge'>Kết Quả Tìm Kiếm</span>
+          <h2 class='section-title'>&quot;<data:view.search.query/>&quot;</h2>
+          <p class='section-subtitle'>Danh sách bài viết phù hợp với từ khóa tìm kiếm.</p>
+        <b:elseif cond='data:view.isArchive'/>
+          <span class='section-badge'>Lưu Trữ</span>
+          <h2 class='section-title'><data:view.archive.range.label/></h2>
+          <p class='section-subtitle'>Các bài viết được lưu trữ trong khoảng thời gian này.</p>
+        <b:else/>
+          <span class='section-badge'>Bản Tin &amp; Thông Báo</span>
+          <h2 class='section-title'>Tin Tức &amp; Cập Nhật Mới Nhất</h2>
+          <p class='section-subtitle'>Thông tin các phiên bản mới, cập nhật bảng từ vựng và hoạt động của cộng đồng CHKey.</p>
+        </b:if>
+      </div>
+
+      <b:if cond='data:posts.notEmpty'>
+        <div class='blog-posts-grid'>
+          <b:loop values='data:posts' var='post'>
+            <article class='blog-card'>
+              <div>
+                <h3 class='blog-card-title'>
+                  <a expr:href='data:post.url'><data:post.title/></a>
+                </h3>
+                <div class='blog-card-date'>
+                  <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='14'>
+                    <rect height='18' rx='2' ry='2' width='18' x='3' y='4'/>
+                    <line x1='16' x2='16' y1='2' y2='6'/>
+                    <line x1='8' x2='8' y1='2' y2='6'/>
+                    <line x1='3' x2='21' y1='10' y2='10'/>
+                  </svg>
+                  <data:post.date/>
+                  <b:if cond='data:post.labels'>
+                    <span style='margin-left: 8px;'>•</span>
+                    <span class='post-label-tag' style='margin-left: 6px; font-size: 0.75rem; padding: 2px 8px;'><data:post.labels.first.name/></span>
+                  </b:if>
+                </div>
+                <div class='blog-card-snippet'>
+                  <data:post.snippet/>
+                </div>
+              </div>
+              <a class='blog-read-more' expr:href='data:post.url'>
+                Đọc chi tiết
+                <svg fill='none' height='15' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='15'>
+                  <line x1='5' x2='19' y1='12' y2='12'/>
+                  <polyline points='12 5 19 12 12 19'/>
+                </svg>
+              </a>
+            </article>
+          </b:loop>
+        </div>
+
+        <!-- Phân trang kế thừa từ Blogger -->
+        <b:if cond='data:olderPageUrl or data:newerPageUrl'>
+          <div class='blog-pagination' style='display: flex; justify-content: center; gap: 16px; margin-top: 40px;'>
+            <b:if cond='data:newerPageUrl'>
+              <a class='btn-secondary' expr:href='data:newerPageUrl' style='display: inline-flex; align-items: center; gap: 8px;'>
+                <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='16'><line x1='19' x2='5' y1='12' y2='12'/><polyline points='12 19 5 12 12 5'/></svg>
+                Trang trước
+              </a>
+            </b:if>
+            <b:if cond='data:olderPageUrl'>
+              <a class='btn-secondary' expr:href='data:olderPageUrl' style='display: inline-flex; align-items: center; gap: 8px;'>
+                Trang tiếp
+                <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='16'><line x1='5' x2='19' y1='12' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>
+              </a>
+            </b:if>
+          </div>
+        </b:if>
+      <b:else/>
+        <div style='text-align: center; padding: 40px 20px; color: var(--text-muted);'>
+          <p>Hiện chưa có bài viết nào trong mục này.</p>
+        </div>
+      </b:if>
+    </b:includable>
+
+    <!-- ========================================================================
+         INCLUDABLE: TRANG LỖI 404
+         ======================================================================== -->
+    <b:includable id='errorPage'>
+      <div class='error-page-wrapper' style='text-align: center; padding: 60px 20px;'>
+        <div style='font-size: 5rem; font-weight: 800; color: var(--primary); margin-bottom: 16px;'>404</div>
+        <h2 class='section-title' style='margin-bottom: 12px;'>Không Tìm Thấy Trang</h2>
+        <p class='section-subtitle' style='margin-bottom: 24px;'>Nội dung bạn đang tìm kiếm không tồn tại hoặc đã được chuyển sang đường dẫn khác.</p>
+        <a class='btn-primary' expr:href='data:blog.homepageUrl' style='display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; text-decoration: none;'>
+          <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.2' viewBox='0 0 24 24' width='16'>
+            <line x1='19' x2='5' y1='12' y2='12'/>
+            <polyline points='12 19 5 12 12 5'/>
+          </svg>
+          Quay lại Trang Chủ
+        </a>
+      </div>
+    </b:includable>
+
+    <!-- ========================================================================
+         INCLUDABLE: BÌNH LUẬN BLOGGER
+         ======================================================================== -->
+    <b:includable id='comments' var='post'>
+      <b:if cond='data:post.commentHtml'>
+        <data:post.commentHtml/>
+      </b:if>
+    </b:includable>
+
+    <!-- ========================================================================
+         VÔ HIỆU HÓA HOÀN TOÀN CÁC THÀNH PHẦN MẶC ĐỊNH THỪA CỦA BLOGGER (ATOM, STATUS...)
+         ======================================================================== -->
+    <b:includable id='feedLinks'/>
+    <b:includable id='feedLinksBody'/>
+    <b:includable id='status-message'/>
+  </b:widget>
+</b:section>

@@ -1,0 +1,68 @@
+/* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+      @media (max-width: 992px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .download-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          padding: 0 16px;
+        }
+        .btn-nav-download {
+          padding: 0;
+          width: 40px;
+          height: 40px;
+          justify-content: center;
+          gap: 0;
+          flex-shrink: 0;
+        }
+        .btn-nav-download .btn-nav-text {
+          display: none;
+        }
+        .guide-tabs {
+          width: 100%;
+          display: flex;
+        }
+        .guide-tab {
+          flex: 1;
+          padding: 8px 12px;
+          font-size: 0.88rem;
+          justify-content: center;
+          gap: 6px;
+        }
+        .guide-tab-badge {
+          display: none;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+        .cta-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+        }
+        .hub-download-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .hub-btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
